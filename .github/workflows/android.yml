@@ -12,11 +12,18 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run build
-      - name: Build with Capacitor
-        run: |
-          npx cap add android
-          npx cap sync android
-      - name: Build APK
-        uses: primary-shatner/android-build-action@v1
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
-          project-path: android
+          distribution: 'zulu'
+          java-version: '17'
+      - name: Build APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: android/app/build/outputs/apk/debug/app-debug.apk
