@@ -1,0 +1,8 @@
+{
+  "name": "DreamScene AI",
+  "description": "Generate high-quality realistic photos and cinematic videos from a single prompt. Support for multiple scenes, custom aspect ratios, and styles.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
